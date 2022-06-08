@@ -1,0 +1,59 @@
+.feed-main {
+    --tw-bg-opacity: 1;
+    background-color: rgb(243 244 246 / var(--tw-bg-opacity));
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.left-side-feed {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.right-side-feed {
+    width: 70%;
+}
+
+.artist-img-post-box {
+    display: block;
+    height: 4rem;
+    width: 4rem;
+    object-fit: cover;
+    border-radius: 10000px;
+    border:2px solid black;
+}
+
+.post-box {
+    display: flex;
+    flex-direction: row;
+    background-color: white;
+    border-radius: 0.75rem;
+    padding: 1rem 2rem;
+
+}
+
+.text-button {
+    border-width: 2px;
+    border-color: #1c041c;
+    border-style: solid;
+    border-radius: 9999px;
+    padding: 1rem;
+    margin-left: 1rem;
+    width: 100%;
+    display: flex;
+    justify-content: left;
+}
+
+.text-button-span {
+    opacity: 0.75;
+}
+
+hr.rounded {
+    border-top: 3px solid #bbb;
+    border-radius: 5px;
+    margin-top: 1rem;
+}

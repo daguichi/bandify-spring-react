@@ -306,4 +306,13 @@ public class AuditionsController {
         return new ModelAndView("redirect:/auditions/" + auditionId + "/applicants");
     }
 
+    @RequestMapping(value = "/feed", method = {RequestMethod.GET})
+    public ModelAndView feed() {
+        ModelAndView mav = new ModelAndView("feed");
+
+        User user = authFacadeService.getCurrentUser();
+        mav.addObject("user", user);
+
+        return mav;
+    }
 }

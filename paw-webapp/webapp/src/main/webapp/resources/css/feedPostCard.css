@@ -1,0 +1,56 @@
+.feed-post-card {
+    background-color: white;
+    border-radius: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    margin: 1rem 0;
+    padding: 1rem;
+}
+
+.shadow {
+    --tw-shadow-color: black;
+    --tw-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.feed-post-card-header {
+    display: flex;
+    flex-direction: row;
+    padding: 0.5rem;
+}
+
+.feed-post-card-header-left-avatar {
+    display: block;
+    height: 4rem;
+    width: 4rem;
+    object-fit: cover;
+    border-radius: 10000px;
+    border:2px solid black;
+}
+
+.feed-post-card-header-right {
+    margin-left: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.feed-post-card-header-right-name-text {
+    font-size: 1rem;
+    line-height: 1rem;
+    font-weight: 600;
+    color: black;
+}
+
+.feed-post-card-content {
+    padding: 0.75rem;
+
+}
+.feed-post-card-header-right-time-text {
+    font-size: 0.75rem;
+    line-height: 0.75rem;
+    font-weight: 500;
+    color: black;
+    opacity: 0.75;
+}
