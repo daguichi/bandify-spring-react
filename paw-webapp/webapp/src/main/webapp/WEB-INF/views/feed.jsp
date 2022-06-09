@@ -43,7 +43,22 @@
                 <jsp:param name="name" value="Jack"/>
                 <jsp:param name="surname" value="Harlow"/>
                 <jsp:param name="createdAt" value="Today"/>
-                <jsp:param name="text" value="${loremIpsum}"/>
+                <jsp:param name="text" value="Check out my latest release featuring Drake!"/>
+                <jsp:param name="youtubeUrl" value="https://www.youtube.com/embed/GGOyFnrZRt0" />
+                <jsp:param name="youtubeTitle" value="Jack Harlow - Churchill Downs feat. Drake [Official Music Video]"/>
+                <jsp:param name="spotifyUrl" value=""/>
+                <jsp:param name="soundcloudUrl" value=""/>
+            </jsp:include>
+            <jsp:include page="../components/feedPostCard.jsp">
+                <jsp:param name="userId" value="2"/>
+                <jsp:param name="name" value="JetsonMadeAnotherOne"/>
+                <jsp:param name="surname" value=""/>
+                <jsp:param name="createdAt" value="Today"/>
+                <jsp:param name="text" value="How could I forger this hit? Love you brother!"/>
+                <jsp:param name="youtubeUrl" value=""/>
+                <jsp:param name="youtubeTitle" value=""/>
+                <jsp:param name="spotifyUrl" value="https://open.spotify.com/embed/track/2aWVaW1p2kUc5yuKwBmRJi?utm_source=generator"/>
+                <jsp:param name="soundcloudUrl" value=""/>
             </jsp:include>
             <jsp:include page="../components/feedPostCard.jsp">
                 <jsp:param name="userId" value="2"/>
@@ -51,7 +66,12 @@
                 <jsp:param name="surname" value=""/>
                 <jsp:param name="createdAt" value="Today"/>
                 <jsp:param name="text" value="${loremIpsum}"/>
+                <jsp:param name="youtubeUrl" value=""/>
+                <jsp:param name="youtubeTitle" value=""/>
+                <jsp:param name="spotifyUrl" value=""/>
+                <jsp:param name="soundcloudUrl" value="a"/>
             </jsp:include>
+
 
         </div>
     </div>

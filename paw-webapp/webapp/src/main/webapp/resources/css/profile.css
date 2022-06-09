@@ -30,6 +30,8 @@
     line-height: 2rem;
     text-align: center;
     word-break: break-word;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .email{

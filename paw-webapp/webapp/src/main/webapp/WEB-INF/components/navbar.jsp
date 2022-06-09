@@ -30,13 +30,15 @@
 
         <div class="w-full md:block md:w-auto" id="mobile-menu">
             <ul>
-                <li>
-                    <a
-                            href="<c:url value="/feed"/>"
-                            class="${param.navItem == 8? "block py-2 pr-4 pl-3 text-white font-black rounded text-2xl" : "block py-2 pr-4 pl-3 text-white rounded text-2xl" }"
-                    ><spring:message code="navbar.feed"/></a
-                    >
-                </li>
+                <sec:authorize access="isAuthenticated()">
+                    <li>
+                        <a
+                                href="<c:url value="/feed"/>"
+                                class="${param.navItem == 8? "block py-2 pr-4 pl-3 text-white font-black rounded text-2xl" : "block py-2 pr-4 pl-3 text-white rounded text-2xl" }"
+                        ><spring:message code="navbar.feed"/></a
+                        >
+                    </li>
+                </sec:authorize>
                 <li>
                     <a
                             href="<c:url value="/auditions"/>"

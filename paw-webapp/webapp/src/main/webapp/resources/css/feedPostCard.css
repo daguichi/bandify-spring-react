@@ -54,3 +54,15 @@
     color: black;
     opacity: 0.75;
 }
+
+.feed-post-card-content-ytvideo {
+    margin-top: 1rem;
+}
+
+.feed-post-card-content-spotify {
+    margin-top: 1rem;
+}
+
+.feed-post-card-content-soundcloud {
+    margin-top: 1rem;
+}
