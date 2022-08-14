@@ -204,6 +204,15 @@ public class ApplicationServiceImpl implements ApplicationService {
         return application;
     }
 
+    // TODO: este es el metodo que agregue yo
+    @Override
+    public Optional<Application> getApplicationById(long applicationId) {
+        Optional<Application> application = applicationDao.findApplication(applicationId);
+        if (application.isPresent() && application.get().getState().equals(ApplicationState.SELECTED))
+            return Optional.empty();
+        return application;
+    }
+
     @Override
     public Optional<Application> getAcceptedApplicationById(long auditionId, long applicationId)  {
         Optional<Application> application = getApplicationById(auditionId,applicationId);

@@ -33,7 +33,9 @@ public interface ApplicationService {
 
     boolean alreadyApplied(long auditionId, long applicantId);
 
-    Optional<Application> getApplicationById(long auditionId, long applicationId) ;
+    Optional<Application> getApplicationById(long auditionId, long applicationId);
+
+    Optional<Application> getApplicationById(long applicationId);
 
     Optional<Application> getAcceptedApplicationById(long auditionId, long applicationId);
 

@@ -1,15 +1,12 @@
 package ar.edu.itba.paw.webapp.controller;
 
-import ar.edu.itba.paw.model.ApplicationState;
 import ar.edu.itba.paw.model.FilterOptions;
 import ar.edu.itba.paw.model.SocialMedia;
 import ar.edu.itba.paw.model.User;
 import ar.edu.itba.paw.model.exceptions.SocialMediaNotFoundException;
 import ar.edu.itba.paw.model.exceptions.UserNotFoundException;
-import ar.edu.itba.paw.service.ApplicationService;
 import ar.edu.itba.paw.service.UserService;
 import ar.edu.itba.paw.webapp.controller.utils.PaginationLinkBuilder;
-import ar.edu.itba.paw.webapp.dto.ApplicationDto;
 import ar.edu.itba.paw.webapp.dto.SocialMediaDto;
 import ar.edu.itba.paw.webapp.dto.UserDto;
 import ar.edu.itba.paw.webapp.form.ArtistEditForm;
@@ -29,9 +26,6 @@ import java.util.stream.Collectors;
 @Path("users")
 @Component
 public class UserController {
-
-    @Autowired
-    private ApplicationService applicationService;
 
     @Autowired
     private UserService userService;
@@ -103,29 +97,6 @@ public class UserController {
         Response.ResponseBuilder response = Response.ok(new GenericEntity<List<UserDto>>(users) {});
         PaginationLinkBuilder.getResponsePaginationLinks(response, uriInfo, page, userService.getFilterTotalPages(filter));
         return response.build();
-    }
-
-    // TODO: seguridad
-    // TODO: las aplicaciones que da son por defecto las pendientes
-    // le podes pasar para que te de las del estado que quieras, podemos dejarlo asi
-    // o que por defecto te de las que sean de cualquier estado.
-    @GET
-    @Path("/{id}/applications")
-    @Produces("application/vnd.application-list.v1+json")
-    public Response getUserApplications(@PathParam("id") final long id,
-                                        @QueryParam("state") @DefaultValue("PENDING") final String state,
-                                        @QueryParam("page") @DefaultValue("1") final int page){
-        final List<ApplicationDto> applicationDtos =
-                applicationService.getMyApplicationsFiltered(id,page, ApplicationState.valueOf(state))
-                        .stream().map(application -> ApplicationDto.fromApplication(uriInfo,application))
-                        .collect(Collectors.toList());
-        if(applicationDtos.isEmpty())
-            return Response.noContent().build();
-        Response.ResponseBuilder responseBuilder = Response.ok(new GenericEntity<List<ApplicationDto>>(applicationDtos){});
-
-        int lastPage = applicationService.getTotalUserApplicationsFiltered(id,ApplicationState.valueOf(state));
-        PaginationLinkBuilder.getResponsePaginationLinks(responseBuilder, uriInfo, page, lastPage);
-        return responseBuilder.build();
     }
 
     @GET

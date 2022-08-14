@@ -1,15 +1,11 @@
 package ar.edu.itba.paw.webapp.controller;
 
-import ar.edu.itba.paw.model.Application;
-import ar.edu.itba.paw.model.ApplicationState;
 import ar.edu.itba.paw.model.Audition;
 import ar.edu.itba.paw.model.FilterOptions;
-import ar.edu.itba.paw.model.exceptions.ApplicationNotFoundException;
 import ar.edu.itba.paw.model.exceptions.LocationNotFoundException;
 import ar.edu.itba.paw.model.exceptions.UserNotFoundException;
 import ar.edu.itba.paw.service.*;
 import ar.edu.itba.paw.webapp.controller.utils.PaginationLinkBuilder;
-import ar.edu.itba.paw.webapp.dto.ApplicationDto;
 import ar.edu.itba.paw.webapp.dto.AuditionDto;
 import ar.edu.itba.paw.webapp.form.AuditionForm;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,9 +38,6 @@ public class AuditionController {
 
     @Autowired
     private LocationService locationService;
-
-    @Autowired
-    private ApplicationService applicationService;
 
     // TODO: Obtener usuario logueado, por ahora esta hardcodeado el ID
     @POST
@@ -95,38 +88,6 @@ public class AuditionController {
     public Response getAuditionById(@PathParam("id") final long auditionId) {
         final Audition audition = auditionService.getAuditionById(auditionId);
         return Response.ok(AuditionDto.fromAudition(uriInfo, audition)).build();
-    }
-
-
-    // TODO: las aplicaciones que da son por defecto las pendientes
-    // le podes pasar para que te de las del estado que quieras, podemos dejarlo asi
-    // o que por defecto te de las que sean de cualquier estado.
-    @GET
-    @Path("/{id}/applications")
-    @Produces("application/vnd.application-list.v1+json")
-    public Response getAuditionsApplications(@PathParam("id") final long auditionId,
-                                             @QueryParam("page") @DefaultValue("1") final int page,
-                                             @QueryParam("state") @DefaultValue("PENDING") final String state) {
-        List<ApplicationDto> applicationDtos =
-                applicationService.getAuditionApplicationsByState(auditionId, ApplicationState.valueOf(state), page)
-                        .stream().map(application -> ApplicationDto.
-                                fromApplication(uriInfo,application)).collect(Collectors.toList());
-        if(applicationDtos.isEmpty())
-            return Response.noContent().build();
-        Response.ResponseBuilder responseBuilder = Response.ok(new GenericEntity<List<ApplicationDto>>(applicationDtos){});
-        int lastPage = applicationService.getTotalAuditionApplicationByStatePages(auditionId,ApplicationState.valueOf(state));
-        PaginationLinkBuilder.getResponsePaginationLinks(responseBuilder, uriInfo, page, lastPage);
-        return responseBuilder.build();
-    }
-
-    @GET
-    @Path("/{auditionId}/applications/{id}")
-    @Produces("application/vnd.application.v1+json")
-    public Response getApplication(@PathParam("auditionId") final long auditionId,
-                                   @PathParam("id") final long applicationId) {
-        final Application application = applicationService.getApplicationById(auditionId,applicationId)
-                .orElseThrow(ApplicationNotFoundException::new);
-        return Response.ok(ApplicationDto.fromApplication(uriInfo, application)).build();
     }
 
 }
